@@ -15,6 +15,9 @@ public class Methods {
 	 */
 	public static double distanceBetween(double x1, double y1, double x2, double y2) {
 		double distance = 0;
+		double xdistance = x2 - x1;
+		double ydistance = y2-y1;
+		double Euclidean = Math.sqrt((xdistance*xdistance) + (ydistance*ydistance));
 		// FIXME: Hint use Math methods (e.g. Math.sqrt) to compute the distance
 		
 		return distance;
@@ -30,6 +33,15 @@ public class Methods {
 	public static void drawBullsEye(double x, double y, double radius) {
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.filledCircle(x, y, radius);
+		
+		StdDraw.setPenColor(StdDraw.BLUE);
+		StdDraw.filledCircle(x, y, (radius/4)*3);
+		
+		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.filledCircle(x, y, radius/2);
+		
+		StdDraw.setPenColor(StdDraw.YELLOW);
+		StdDraw.filledCircle(x, y, (radius/4));
 
 		// TODO: Draw the remaining rings of the bull's eye
 		// Blue ring with 3.0/4.0 the radius
@@ -63,6 +75,21 @@ public class Methods {
 		String result = "";
 		// TODO: Finish this method
 		
+		int index = 0;
+		int counter = 0; 
+
+		// while more 1's in the message
+		while (source.indexOf(target) >= 0) {
+			// Find the next index for 1
+			index = source.indexOf(target);
+			
+			String firstpart = source.substring(0,index);
+			String lastpart = source.substring(index+1);
+			source = firstpart + replacement + lastpart;
+			
+			counter++;
+		}
+			result = source;
 		return result;
 	}
 
@@ -75,7 +102,11 @@ public class Methods {
 	public static int arraySum(int[] values) {
 		int sum = 0;
 		// FIXME: Compute the sum of the values in an array
-		
+		int v = 0;
+		for (int i = 0; i < values.length; i++) {
+				v = values[i];
+				sum = sum + v;
+			}
 		return sum;
 	}
 
@@ -87,15 +118,33 @@ public class Methods {
 	 * @return and array of size that's filled with value
 	 */
 	public static int[] filledArray(int length, int value) {
-		int[] values = null; // FIXME: Create an array of the appropriate size
+		int[] values = new int[length]; // FIXME: Create an array of the appropriate size
 		// TODO: Finish this method
-
 		
+		for (int i = 0; i < values.length; i++) {
+		values[i] = value;
+
+		}
 
 		return values;
 	}
 
-	// TODO: Create an arrayMean method which accepts an int array of values parameter.
+	/**
+	 * Return the mean if a given array
+	 * 
+	 * @para array the length of the returned array
+	 * @return the mean of the array
+	 */
+	public static double arrayMean(int[] array) {
+		
+		double total = 0;
+		for (int val : array) {
+				total = total + val;
+	}
+		double mean = total/array.length;
+	return mean;
+}
+	
 	// TODO: Create a JavaDoc comment for the arrayMean method.
 
 	
